@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Examen Final</title>
+</head>
+<body>
+	<h1>Lista de empleados</h1>
+	<a th:href="@{/empleado/agregar}">Agregar nuevo</a>
+	<table>
+		<thead>
+			<tr>
+				<td>Codigo</td>
+				<td>Nombre</td>
+				<td>Apellido</td>
+				<td>Pais</td>
+				<td>Area</td>
+				<td>Acciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="empleado: ${empleados}">
+				<td th:text="${empleado.empleadoID}"></td>
+				<td th:text="${empleado.nombre}"></td>
+				<td th:text="${empleado.apellido}"></td>
+				<td th:text="${empleado.area.nombre}"></td>
+				<td th:text="${empleado.pais.nombre}"></td>
+				<td><a th:href="@{/empleado/eliminar/__${empleado.empleadoID}__}">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

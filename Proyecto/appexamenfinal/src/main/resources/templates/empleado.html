@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Examen Final</title>
+  </head>
+  <body>
+          <h1 >Empleado </h1>
+          <form method="post" th:action="@{/empleado/agregar}" th:object="${empleado}">
+					Pais:
+					<select id="pais" name="pais">
+		                <option th:each="pais: ${pais}" th:value="${pais.paisID}" th:text="${pais.nombre}">
+		                </option>
+		             </select>
+		             <br/>
+				
+					Area:
+					<select id="area" name="area">
+		                <option th:each="area: ${area}" th:value="${area.areaID}" th:text="${area.nombre}">
+		                </option>
+		            </select>
+					<br/>
+				
+					Nombre:
+					<input type="text"  placeholder="ingrese nombre" th:field="*{nombre}"/>
+					<br/>
+					
+					Apellido:
+					<input  type="text"  placeholder="ingrese apellido" th:field="*{apellido}"/>
+					<br/>
+					
+					
+					<button type="submit" >Registrar empleado</button>
+			</form>
+			
+			<div>Resultado.</div>
+        
+	        <h1>Listado de Empleados</h1>
+	
+	        <table>
+				<thead>
+					<tr>
+						<td>Codigo</td>
+						<td>Nombre</td>
+						<td>Apellido</td>
+						<td>Pais</td>
+						<td>Area</td>
+						<td>Eliminar</td>
+					</tr>
+				</thead>
+	
+				<tr>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+					<td ></td>
+				</tr>
+			</table>   
+  </body>
+</html>

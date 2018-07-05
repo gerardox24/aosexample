@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: 
+    url: jdbc:mysql://localhost/dbfinal?useSSL=false 
+    username: root
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+server:
+  port: 8091
