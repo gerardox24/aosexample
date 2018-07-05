@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+<style type="text/css">
+	.bgimg {
+    	background-image: url('https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX15737043.jpg');
+    	//background-color: lightblue;
+	}
+</style>
+</head>
+<body class = "bgimg">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<h1 class="card-header" th:text="${title}"></h1>
+			<div class="card-body">
+
+				<form th:action="@{/rutas/add}" th:object="${rutaParaderoMatch}"
+					method="post">
+
+					<div class="form-group">
+						<label for="id">ID:</label> <input type="text"
+							class="form-control" id="rutaID" th:field="*{ruta.rutaID}"
+							placeholder="Ingrese el ID" />
+					</div>
+					<div class="form-group">
+						<label for="nombre">Nombre:</label> <input type="text"
+							class="form-control" id="nombre" th:field="*{ruta.nombre}"
+							placeholder="Ingrese el nombre" />
+					</div>
+					<div class="form-group">
+						<label for="horarioInicio">Horario Inicio:</label> <input
+							type="text" class="form-control" id="horarioInicio"
+							th:field="*{ruta.horarioInicio}"
+							placeholder="Ingrese el horario de inicio" />
+					</div>
+					<div class="form-group">
+						<label for="horarioFin">Horario Fin:</label> <input type="text"
+							class="form-control" id="horarioFin"
+							th:field="*{ruta.horarioFin}"
+							placeholder="Ingrese el horario de fin" />
+					</div>
+
+					<div class="card">
+						<h6 class="card-header">Paraderos</h6>
+						<div class="cardbody">
+							<table class="table table-bordered">
+								<thead class="table-dark">
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Paradero ID</th>
+										<th scope="col">Nombre</th>
+										<th scope="col">Distrito</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="value,iter: *{paraderoMatches}">
+										<td>
+											<input type="checkbox" th:field="*{paraderoMatches[__${iter.index}__].match}" />
+											<input type="hidden" th:field="*{paraderoMatches[__${iter.index}__].paradero.paraderoID}" />
+										</td>
+										<td th:text="${value.paradero.paraderoID}"></td>
+										<td th:text="${value.paradero.nombre}"></td>
+										<td th:text="${value.paradero.distritoID.nombre}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="submit" th:value="${submitValue}"
+							class="btn btn-primary" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

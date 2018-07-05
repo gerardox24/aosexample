@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<mvc:resources mapping="/resources/**"
+	location="/resources/Scripts/main.js" />
+<style type="text/css">
+.bgimg {
+	background-image:
+		url('https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX15737043.jpg');
+	//
+	background-color: lightblue;
+}
+</style>
+
+</head>
+<body class="bgimg">
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<h1 class="card-header" th:text="${title}"></h1>
+			<div class="card-body">
+				<div class="form-group">
+					<a class="btn btn-primary btn-xs" th:href="@{/rutas/add}">Crear
+						Ruta</a>
+				</div>
+				<table class="table">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Ruta</th>
+							<th scope="col">Hora Inicio</th>
+							<th scope="col">Hora Fin</th>
+							<th scope="col">action</th>
+						</tr>
+					</thead>
+					<tbody class="lista">
+						<tr th:each="ruta: ${rutas}" class="listalista">
+							<td th:text="${ruta.rutaID}"></td>
+							<td th:text="${ruta.nombre}"></td>
+							<td th:text="${ruta.horarioInicio}"></td>
+							<td th:text="${ruta.horarioFin}"></td>
+							<td><a th:href="@{/rutas/edit/__${ruta.rutaID}__}">Edit</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-primary" id="btn_prev">Prev</button>
+				<span class="noPage"></span>
+				<button class="btn btn-primary" id="btn_next">Next</button>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
